@@ -1,0 +1,33 @@
+#footwrapper {
+    border: 2px solid #030303;
+    box-shadow: 0 0 7px 1px black;
+    background-color: #030303;;
+}
+
+aside {
+    grid-area:aside;
+    color:white;
+}
+
+main {
+    grid-area:main;
+    color: white;
+}
+
+
+.footer-container {
+    display:grid;
+    height: auto;
+    margin: 0 auto;
+    grid-template-areas: "aside main";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    padding-right: 30px;
+}
+/* comment */
+.footer-news {
+    display:flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    padding-right: 10%;
+}

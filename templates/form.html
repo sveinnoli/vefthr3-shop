@@ -1,20 +1,13 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Sign in</title>
-
-    <form action="/info" method="POST">
-        Nafn:<br>
-        <input type="text" name="name" required>
-        <br>
-        Netfangið:<br>
-        <input type="email" name="email" required>
-        <br><br>
-        <input type="submit" value="Skrá">
-      </form> 
-</head>
-<body>
-    
-</body>
-</html>
+{% extends "base.html"%}
+{%block title%}Form{%endblock%}
+{%block content%}
+<form action="/info" method="POST">
+    Nafn:<br>
+    <input type="text" name="name" required>
+    <br>
+    Netfangið:<br>
+    <input type="email" name="email" required>
+    <br><br>
+    <input type="submit" value="Skrá">
+</form> 
+{%endblock%}

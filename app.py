@@ -1,39 +1,55 @@
-# Verðum að importa session
-from flask import Flask, session
+from flask import Flask, session, render_template, request
 app = Flask(__name__)
 
-# Þessi verður að vera inni til að session virki, best að fá random gildi...
-app.config['SECRET_KEY'] = 'Leyno'
+#Session key
+app.config['SECRET_KEY'] = "lol"
 
-# Rót, hlekkir á mismunandi slóðir með mismunandi virkni session
+
+#Data -- Figure out how to use session to store data, 
+session = {"wares":[{"price":"3500", "product":"shirt"}, {"price":"4000", "product":"shoes"}]}
+text = ""
+visited = False
+
 @app.route('/')
 def index():
-	return '<h3><a href="/on">Set session</a></h3><h3><a href="/off">Delete session</a></h3><h3><a href="/check">Check session</a></h3>'
+	return render_template("shop.html")
 
-# Setjum session í gang, 'hilmir' og 'GALVEZ' eru bæði valkvæð gildi sem þú ákveður sjálf / ur
+# Activates session
 @app.route('/on')
 def sessionon():
-    session['hilmir'] = 'GALVEZ'
-    return '<h3>Session ON</h3><h3><a href="/">Home</a></h3>'
+    if "hilmir" in session:
+        text="Session already ON"
+    else:
+        session['hilmir'] = 'GALVEZ'
+        session["testing"] = "working"
+        print(session)
+        text = "Session is now SET"
+    return render_template("shop.html", text=text, session=session)
 
-# Eyðum session
+# Deletes session
 @app.route('/off')
 def sessionoff():
     if 'hilmir' in session:
         session.pop('hilmir', None)
-        return '<h3>Session poped</h3><h3><a href="/">Home</a></h3>'
+        text="Session poped"
     else:
-        return '<h3>Session was not set</h3><h3><a href="/">Home</a></h3>'
+        text="Session was not set"
+    return render_template("shop.html", text=text)
 
-# Athugum hvort session 'hilmir' sé í gangi
+# Checks for session
 @app.route('/check')
 def checksession():
     if 'hilmir' in session:
-        print(session['hilmir']) # Debug, prentum gildi session í cmd
-        return '<h3>ON</h3><h3><a href="/">Home</a></h3>'
+        text="ON"
     else:
-        return '<h3>OFF</h3><h3><a href="/">Home</a></h3>'
+        text="OFF"
+    return render_template("shop.html", text=text)
 
+
+#Others
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 if __name__ == "__main__":
 	app.run(debug=True)
