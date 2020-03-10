@@ -3,7 +3,7 @@ import os
 app = Flask(__name__)
 
 #Session key
-app.config['SECRET_KEY'] = os.urandom(24)
+app.config['SECRET_KEY'] = os.urandom(24).hex()
 #Store cart seperately from session but append any data into session if they click purchase on a product
 
 #Data -- Figure out how to use session to store data, 
