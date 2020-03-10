@@ -1,14 +1,18 @@
 from flask import Flask, session, render_template, request
+import os
 app = Flask(__name__)
 
 #Session key
-app.config['SECRET_KEY'] = "lol"
-
+app.config['SECRET_KEY'] = os.urandom(24)
+#Store cart seperately from session but append any data into session if they click purchase on a product
 
 #Data -- Figure out how to use session to store data, 
 session = {"wares":[{"price":"3500", "product":"shirt"}, {"price":"4000", "product":"shoes"}]}
 text = ""
 visited = False
+
+def info():
+    exit()
 
 @app.route('/')
 def index():

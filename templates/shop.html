@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {%block title%}WizShop{%endblock%}
 {%block content%}
+    <!-- Find alternative to anchors to changing session -->
     <h3><a href="/on">Set session</a></h3><h3><a href="/off">Delete session</a></h3><h3><a href="/check">Check session</a></h3>
     {% if text %}
         <h3>{{text}}</h3>
     {%endif%}
     <!-- Iterate through session cache and get all shopping items -->
-    {%for x in session["wares"]%}
-        <h1 style="display: inline;">{{x["product"]}}<span>&nbsp;{{x["price"]}}</span></h1>
+    {%for item in session["wares"]%}
+        <h1 style="display: inline;">{{item["product"]}}<span>&nbsp;{{item["price"]}}</span></h1>
     {% endfor %}
-
 {%endblock%}
