@@ -1,13 +1,37 @@
 {% extends "base.html" %}
 {%block title%}WizShop{%endblock%}
+
 {%block content%}
-    <!-- Find alternative to anchors to changing session -->
-    <h3><a href="/on">Set session</a></h3><h3><a href="/off">Delete session</a></h3><h3><a href="/check">Check session</a></h3>
-    {% if text %}
-        <h3>{{text}}</h3>
-    {%endif%}
-    <!-- Iterate through session cache and get all shopping items -->
-    {%for item in session["wares"]%}
-        <h1 style="display: inline;">{{item["product"]}}<span>&nbsp;{{item["price"]}}</span></h1>
-    {% endfor %}
+    <a href="" class="shopping-cart">
+        <div class="cart-container">
+            {% if session["wares"] | length == 0 %}
+                <span class="cart-count">
+                    <h3>Empty</h3>
+                </span>
+            {% else %}
+                <span class="cart-count">
+                    <h3>{{session["wares"] | length}} items in cart</h3>
+                </span>
+            {% endif %}
+            <span class="cart-icon">
+                <img src="/static/images/shopping-cart.jpg">
+            </span>
+        </div>
+    </a>
+    <div class ="grid-wrapper">
+        {% for item in products['wares'] %}
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img src="{{item['image']}}">
+                </div>
+                <div class="product-info">
+                    <div class="info-left">Product {{item['product']}}</div>
+                    <div class="info-right">Price <b>{{item['price']}}</b>kr</div>
+                </div>
+                <form method="POST">
+                    <input type="submit" name="AddItemCart" value="Add to cart" class="product-addcart" data-id="{{item['id']}}"></input>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
 {%endblock%}

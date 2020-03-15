@@ -4,53 +4,21 @@ app = Flask(__name__)
 
 #Session key
 app.config['SECRET_KEY'] = os.urandom(24).hex()
-#Store cart seperately from session but append any data into session if they click purchase on a product
 
-#Data -- Figure out how to use session to store data, 
-session = {"wares":[{"price":"3500", "product":"shirt"}, {"price":"4000", "product":"shoes"}]}
-text = ""
-visited = False
+#products in shop 
+#NOTE keep prices in int, figure out another time how to convert it from str to int
+products = {"wares":[
+            {"price":4000, "product":"shirt", "image":"/static/images/shirt1.jpg","id":os.urandom(10).hex()},
+            {"price":3500, "product":"shoes", "image":"/static/images/shoes1.jpg","id":os.urandom(10).hex()},
+            {"price":5000, "product":"pants", "image":"/static/images/pants1.jpg","id":os.urandom(10).hex()},
+            {"price":7500, "product":"shoes", "image":"/static/images/shoes2.jpg","id":os.urandom(10).hex()}
+            ]}
 
-def info():
-    exit()
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def index():
-	return render_template("shop.html")
+    return render_template("shop.html", products=products, session=session)
 
-# Activates session
-@app.route('/on')
-def sessionon():
-    if "hilmir" in session:
-        text="Session already ON"
-    else:
-        session['hilmir'] = 'GALVEZ'
-        session["testing"] = "working"
-        print(session)
-        text = "Session is now SET"
-    return render_template("shop.html", text=text, session=session)
-
-# Deletes session
-@app.route('/off')
-def sessionoff():
-    if 'hilmir' in session:
-        session.pop('hilmir', None)
-        text="Session poped"
-    else:
-        text="Session was not set"
-    return render_template("shop.html", text=text)
-
-# Checks for session
-@app.route('/check')
-def checksession():
-    if 'hilmir' in session:
-        text="ON"
-    else:
-        text="OFF"
-    return render_template("shop.html", text=text)
-
-
-#Others
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404

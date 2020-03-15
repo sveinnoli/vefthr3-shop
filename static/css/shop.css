@@ -1,0 +1,112 @@
+.grid-wrapper {
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.shopping-cart {
+    display:flex;
+    justify-content: flex-end;
+}
+
+.cart-container {
+    display:flex;
+    flex-direction: row;
+    border: 2px solid black;
+    position: relative;
+    margin: 0.25em 1em 0 0;
+}
+
+.cart-count {
+    position: relative;
+    top: 2px;
+    left: 5px;
+}
+
+.cart-icon {
+
+}
+
+.cart-icon img {
+    height: 35px;
+    width: 65px;
+}
+
+.product-item{
+    border: 2px solid black;
+    margin: 1.5em 1em;
+    box-shadow: 3px 4px 3px #030303;
+}
+
+.product-item:nth-child(1), .product-item:nth-child(2), .product-item:nth-child(3) {
+    margin: 0.5em 1em 1em 1em;
+}
+
+.product-item-image {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 200px;
+    padding: 10px;
+}
+
+.product-item-image img {
+    align-self: center;
+}
+
+.product-info {
+    border-top: 2px solid;
+    display:flex;
+    align-items: center;
+}
+
+.product-info .info-left, .info-right {
+    width: 50%;
+    color:whitesmoke;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.product-info .info-left {
+    background: linear-gradient(royalblue, #582c68);
+    ;
+}
+
+.product-info .info-right {
+    background: linear-gradient(#4a1c5a, #8a45a3);
+
+}
+
+.product-addcart {
+    background: linear-gradient(rgb(25, 97, 141), rgb(62, 138, 185));
+    position: relative;
+    font-size: 1.2em;
+    padding: 5px;
+    border: none;
+    border-top: 1px solid black;
+    text-shadow: 0px -1px 1px rgba(0,0,0,0.15);
+    color: whitesmoke;
+    width: 100%;
+    cursor:pointer;
+}
+
+.product-addcart:hover {
+    background-color: rgb(29, 109, 158);
+    background: linear-gradient(rgb(29, 109, 158), rgb(74, 170, 230));
+}
+
+@media screen and (max-width: 60em) {
+    .grid-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 35em) {
+    .grid-wrapper {
+        display:inline;
+    }
+
+    .shopping-cart {
+        justify-content: center;
+    }  
+}
