@@ -19,20 +19,22 @@
         </div>
     </a>
     <div class ="grid-wrapper">
-        {% for item in products['wares'] %}
+        {% for item in products["wares"] %}
+        {% for key, value in item.items() %}
         <form action="/" method="POST">
-            <input type="hidden" name="add_to_cart" value="{{item['id']}}">
+            <input type="hidden" name="add_to_cart" value="{{key}}">
             <div class="product-item">
                 <div class="product-item-image">
-                    <img src="{{item['image']}}">
+                    <img src="{{value['image']}}">
                 </div>
                 <div class="product-info">
-                    <div class="info-left">Product {{item['product']}}</div>
-                    <div class="info-right">Price <b>{{item['price']}}</b>kr</div>
+                    <div class="info-left">Product {{value['product']}}</div>
+                    <div class="info-right">Price <b>{{value['price']}}</b>kr</div>
                 </div>
                 <input type="submit" class="product-addcart" value="Add to cart"></input>
             </div>
         </form>
+        {% endfor %}
         {% endfor %}
     </div>
 {%endblock%}

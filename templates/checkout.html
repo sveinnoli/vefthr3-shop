@@ -2,19 +2,92 @@
 {%block title%}Checkout{%endblock%}
 {%block content%}
 <div class="checkout-container">
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    <h1>ok</h1>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <td>
-                <h1>gg</h1>
-            </td>
-        </tbody>
-    </table>
+    <!-- <a href="/checkout" class="shopping-cart">
+        <div class="checkout">
+                <span class="cart-checkout">
+                    <h3>Checkout</h3>
+                </span>
+        </div>
+    </a> -->
+    <div class="wares-wrapper">
+    {% if session["wares"] != None and session["wares"] != undefined %}
+    {% for item in session["wares"] %}
+    {% for key, value in item.items() %}
+        <div class="wares-container">
+            <form method='POST'>
+                <div class="wares-image">
+                    <button type="submit" class="wares-remove icon-bin2"></button>
+                    <input type="hidden" name="remove" value="{{key}}">
+                    <input type="hidden" name="num" value="{{value['num']}}">
+                    <img src="{{value['image']}}">
+                </div>
+                <div class="wares-info">
+                    <div class="info-left">
+                        Product {{value["product"]}}
+                    </div>
+                    <div class="info-right">
+                        Price <b>{{value["price"]}}</b>kr
+                    </div>
+                </div>
+            </form>
+        </div>
+    {% endfor %}
+    {% endfor %}
+    {% endif %}
+    </div>
 </div>
+
+{% if session["wares"] != None and session["wares"] != undefined %}
+{% if session["wares"] | length != 0%}
+<div class="signin-form">
+    <form method='POST'>
+        <fieldset>
+            <legend>Purchase</legend>
+            <div class="finalprice">
+                <div class="finalprice-price">
+                    <h3>Price <span>{{price}}</span></h3>
+                </div>
+            </div>
+            <label><p>Name</p>
+                <input
+                    required
+                    type="text" 
+                    name="name" 
+                    placeholder="Your Name"
+                    autofocus
+                    title="Your Name">
+            </label>
+            <label><p>Email:</p>
+                <input
+                required
+                type="email" 
+                name="email" 
+                placeholder="name@email(.is/.com)"
+                title="Enter email">
+            </label>
+
+            <label>Telephone nr
+                <input pattern='[0-9]{3}[0-9]{4}' title="1234567" required>
+            </label>
+            
+            <label>
+                <input type="submit" value="Purchase" name="purchase">
+            </label>
+        </fieldset>
+    </form>
+</div>
+{% endif %}
+{% endif %}
+
+{% if session["purchase"] == True%}
+{% if session["user_id"]["name"] != None %}
+<div class="p-success">
+    <span class="p-p-success">
+        <h3 class="center">Thanks for the purchase {{session["user_id"]["name"]}}</h3>
+        <h3>Your receipt has been send at <span class="email">{{session["user_id"]["email"]}}</span></h3>
+    </span>
+</div>
+{% endif %}
+{% endif %}
+
 {%endblock%}

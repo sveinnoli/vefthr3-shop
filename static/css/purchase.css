@@ -1,0 +1,98 @@
+.signin-form {
+    max-width: 35em;
+    margin: 2em auto 0;
+}
+
+.signin-form fieldset {
+    border-radius: 10px;
+    border: 1px solid #030303;
+    padding: 1.5em;
+    margin: 1em 0;
+}
+
+
+legend {
+    font-family: var(--header-font);
+    font-size: 2em;
+}
+
+.signin-form input[type=text], .signin-form input[type=password], .signin-form input[type=email], .signin-form textarea{
+    width: 100%;
+}
+
+.signin-form input, .signin-form select, .signin-form textarea {
+    padding: 4.25px 10px;
+    border-color:deepskyblue;
+    border-radius:10px;
+    outline:none;
+    margin: 0 auto 1em;
+    font-family: var(--main-font)
+}
+.signin-form input[type=radio], .signin-form input[type=checkbox], .signin-form select, .signin-form input[type=submit] {
+    cursor:pointer;
+}
+
+.signin-form select {
+    height: 2.5em;
+    width: 8em;
+}
+
+input:focus {
+    border-color:#9147FF;
+}
+.signin-form input[type=submit] {
+    display:block;
+    width: 8em;
+    margin: 0 auto;
+    margin: 1em auto;
+}
+
+
+#myPassword {
+    margin: 0;
+}
+
+#reveal-loc {
+    display:block;
+    margin: 0 auto 0.8em;
+    padding-left: 0.25em;
+    font-weight: 600;
+}
+
+#reveal {
+    position: relative;
+    top: 2px;
+    width: auto;
+    width: 1em;
+    height: 1em;
+}
+
+#auto-signin {
+    display:block;
+}
+
+.finalprice {
+    display:flex;
+    justify-content: center;
+}
+.finalprice-price {
+    background: rgba(0, 128, 0, 0.733);
+    padding: 0px 5px;
+    border-radius: 10px;
+}
+
+.p-success {
+    display:flex;
+    justify-content: center;
+}
+
+.p-p-success {
+    background: rgba(0, 128, 0, 0.678);
+    padding:5px;
+    border-radius:10px;
+    border: 1px solid #030303;
+}
+
+.center {
+    text-align: center;
+}

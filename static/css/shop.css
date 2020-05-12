@@ -59,7 +59,7 @@
     align-items: center;
 }
 
-.product-info .info-left, .info-right {
+.info-left, .info-right {
     width: 50%;
     color:whitesmoke;
     text-align: center;
@@ -67,12 +67,12 @@
     text-overflow: ellipsis;
 }
 
-.product-info .info-left {
+.info-left {
     background: linear-gradient(royalblue, #582c68);
     ;
 }
 
-.product-info .info-right {
+.info-right {
     background: linear-gradient(#4a1c5a, #8a45a3);
 
 }
